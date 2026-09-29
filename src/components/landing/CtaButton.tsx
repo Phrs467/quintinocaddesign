@@ -1,13 +1,10 @@
 import { MessageCircle } from "lucide-react";
-import { cta, mensagemWhatsapp } from "@/content/landing";
+import { cta, whatsapp } from "@/content/landing";
 
-/**
- * Link do WhatsApp com a mensagem pré-preenchida. O número vem de NEXT_PUBLIC_WHATSAPP_NUMBER
- * ({{PENDENTE: número comercial}}); sem ele, o wa.me abre para a pessoa escolher o contato.
- */
+/** Link do WhatsApp com a mensagem pré-preenchida (número e texto em src/content/landing.ts). */
 export function whatsappHref() {
-  const numero = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, "");
-  return `https://wa.me/${numero}?text=${encodeURIComponent(mensagemWhatsapp)}`;
+  const numero = whatsapp.numero.replace(/\D/g, "");
+  return `https://wa.me/${numero}?text=${encodeURIComponent(whatsapp.mensagem)}`;
 }
 
 /** Ação principal da landing: abre a conversa no WhatsApp. */

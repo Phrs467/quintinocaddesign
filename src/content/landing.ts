@@ -10,9 +10,15 @@ export const site = {
 /** Texto do botão principal (abre o WhatsApp). */
 export const cta = "Falar no WhatsApp";
 
-/** Mensagem que já abre preenchida no WhatsApp. */
-export const mensagemWhatsapp =
-  "Olá! Vim pelo Instagram e gostaria de solicitar uma consulta sobre design de próteses em ExoCad.";
+export const whatsapp = {
+  /**
+   * Número comercial: só dígitos, com 55 (Brasil) e DDD. Ex.: "5511912345678".
+   * {{PENDENTE: número comercial}} — vazio, o link abre o WhatsApp para a pessoa escolher o contato.
+   */
+  numero: "",
+  /** Mensagem que já abre preenchida na conversa. */
+  mensagem: "Olá! Vim pelo Instagram e gostaria de solicitar uma consulta sobre design de próteses em ExoCad.",
+};
 
 export const hero = {
   titulo: "Designs de Prótese em ExoCad que Aceleram sua Produção",

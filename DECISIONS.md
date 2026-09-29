@@ -6,10 +6,10 @@ Registro das escolhas feitas onde a especificação (`quintino-hub-spec.md`) nã
 
 O cliente decidiu ficar, por enquanto, só com a instabio. **Formulário, API de leads, pontuação, e-mails, banco (Neon) e CRM foram removidos do código** — a pedido do dono, sem cópia guardada. Voltar a tê-los exigiria refazer (a spec continua descrevendo tudo).
 
-- **Ação única:** botão **"Falar no WhatsApp"** (hero e botão fixo no rodapé do celular). Abre `https://wa.me/<NEXT_PUBLIC_WHATSAPP_NUMBER>?text=…` em nova aba, com a mensagem pré-preenchida "Olá! Vim pelo Instagram e gostaria de solicitar uma consulta sobre design de próteses em ExoCad." (editável em `src/content/landing.ts`).
-- **Número do WhatsApp:** `{{PENDENTE: número comercial}}`. Sem a variável, o `wa.me` abre o WhatsApp para a pessoa escolher o contato — o botão continua funcionando, mas sem destino certo. Preencher antes de publicar.
+- **Ação única:** botão **"Falar no WhatsApp"** (hero e botão fixo no rodapé do celular). Abre `https://wa.me/<número>?text=…` em nova aba, com a mensagem pré-preenchida "Olá! Vim pelo Instagram e gostaria de solicitar uma consulta sobre design de próteses em ExoCad." (editável em `src/content/landing.ts`).
+- **Número do WhatsApp:** fica em `src/content/landing.ts` (`whatsapp.numero`), junto com a mensagem — não em variável de ambiente. O número não é segredo (aparece no link do botão para qualquer visitante), então a `.env` não protegia nada; no arquivo de conteúdo fica num lugar só, versionado, igual em todo ambiente e sem configuração na Vercel. `{{PENDENTE: número comercial}}`: vazio, o `wa.me` abre o WhatsApp para a pessoa escolher o contato — preencher antes de publicar.
 - **Removidos junto:** página `/privacidade` (existia para o aceite LGPD do formulário; sem coleta de dados, ficou sem uso), páginas `/solicitar` e `/obrigado`, rota `/api/leads`, `/crm/*`, `proxy.ts`, migrations e scripts, testes e as dependências `pg`, `resend`, `zod`, `react-hook-form`, `@hookform/resolvers`, `server-only`, `@electric-sql/pglite` e `vitest`.
-- **Variáveis de ambiente:** só `NEXT_PUBLIC_WHATSAPP_NUMBER`.
+- **Variáveis de ambiente:** nenhuma (`.env.example` removido).
 
 ## Stack
 - **Next.js 16** (App Router; a spec pede 14+), **Tailwind CSS v4** (tokens em `@theme` em `src/app/globals.css`), **lucide-react** (ícones de linha; sem ícones de marca — `MessageCircle` representa o WhatsApp).
