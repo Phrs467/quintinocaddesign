@@ -1,26 +1,175 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Base neutra quente (papel) com blocos navy de alto contraste nos pontos de venda
+ * (vídeo, "A Solução", chamada final). Títulos em serifada sóbria; interface em Inter.
+ */
+@theme {
+  --color-navy: #17233d;
+  --color-navy-deep: #111a2e;
+  /* Tom do visor 3D do ExoCad (fundo dos renders do portfólio) */
+  --color-viewport: #16161e;
+  --color-viewport-raised: #1f2029;
+  --color-navy-hover: #24344f;
+  --color-blue: #314c77;
+  --color-teal: #305050;
+  --color-pattern: #e3e6eb;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Neutros */
+  --color-paper: #f8f7f4;
+  --color-surface: #ffffff;
+  --color-sunken: #efede8;
+  --color-line: #e4e2dc;
+  --color-line-strong: #cfccc4;
+  --color-ink: #1f2430;
+  --color-muted: #5f6470;
+
+  /* Status (CRM) */
+  --color-revisar: #b7791f;
+  --color-descartado: #6b7280;
+
+  --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --font-heading: var(--font-serif);
+  --font-label: var(--font-sans);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+  }
+  h1,
+  h2,
+  h3 {
+    color: var(--color-navy);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+  kbd {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    line-height: 1;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 0.25rem;
+    background: var(--color-surface);
+    color: var(--color-muted);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Grade milimetrada (área de trabalho do CAD) — versões clara e escura */
+@utility grid-cad {
+  background-image:
+    linear-gradient(to right, rgb(23 35 61 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(23 35 61 / 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+@utility grid-cad-dark {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Conteúdo ainda não fornecido: visível, mas discreto (marcadores {{PENDENTE: ...}}) */
+@utility pendente {
+  font-family: var(--font-sans);
+  font-size: 0.8em;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  color: var(--color-muted);
+  background: var(--color-sunken);
+  border-bottom: 1px dashed var(--color-line-strong);
+  border-radius: 2px;
+  padding: 0 0.3em;
+  white-space: nowrap;
+}
+
+/* Botão secundário / neutro */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding-inline: 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    color 150ms,
+    transform 150ms;
+}
+
+/* Botão principal: sólido navy, cantos de 8px, texto centralizado com seta pequena ao lado. */
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.5rem;
+  padding-inline: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 150ms;
+  &:hover {
+    background-color: var(--color-navy-hover);
+  }
+  &:disabled {
+    opacity: 0.7;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Entrada suave das seções (desligada com redução de movimento) */
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@utility surgir {
+  animation: surgir 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Marcador de pendência sobre fundos escuros (fora de @layer para ter prioridade sobre o utilitário) */
+.sobre-escuro .pendente {
+  color: rgb(255 255 255 / 0.75);
+  background: rgb(255 255 255 / 0.1);
+  border-bottom-color: rgb(255 255 255 / 0.3);
 }

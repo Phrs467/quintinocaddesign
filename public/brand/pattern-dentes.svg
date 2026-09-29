@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="112" height="112" viewBox="0 0 112 112">
+  <!-- Padrão de dentes em diagonal (placeholder até receber o padrão do manual) -->
+  <defs>
+    <path id="dente" d="M12 4c-2 0-3 1-4.5 1S5 4 4 5c-1.5 1.5-1 5 0 8 .7 2 1 5 2 6.5.8 1.2 2 .5 2.3-1L9 15c.3-1.3 1.2-2 3-2s2.7.7 3 2l.7 3.5c.3 1.5 1.5 2.2 2.3 1 1-1.5 1.3-4.5 2-6.5 1-3 1.5-6.5 0-8-1-1-2.5 0-3.5 0S14 4 12 4z"
+      fill="none" stroke="#E3E6EB" stroke-width="1.2" stroke-linejoin="round"/>
+  </defs>
+  <use href="#dente" transform="translate(14 14) rotate(-30 12 12)"/>
+  <use href="#dente" transform="translate(70 70) rotate(-30 12 12)"/>
+</svg>
