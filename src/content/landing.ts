@@ -15,9 +15,9 @@ export const whatsapp = {
    * Número comercial: só dígitos, com 55 (Brasil) e DDD. Ex.: "5511912345678".
    * {{PENDENTE: número comercial}} — vazio, o link abre o WhatsApp para a pessoa escolher o contato.
    */
-  numero: "",
+  numero: "5562993836170",
   /** Mensagem que já abre preenchida na conversa. */
-  mensagem: "Olá! Vim pelo Instagram e gostaria de solicitar uma consulta sobre design de próteses em ExoCad.",
+  mensagem: "Olá! Vim pelo Instagram e gostaria de mais informações.",
 };
 
 export const hero = {
