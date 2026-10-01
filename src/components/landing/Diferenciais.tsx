@@ -4,7 +4,7 @@ import { SectionHeading } from "./SectionHeading";
 /** Diferenciais como uma ficha técnica (painel de propriedades): nome e valor em linhas. */
 export function Diferenciais() {
   return (
-    <section aria-labelledby="diferenciais-titulo" className="border-t border-line py-14 md:py-20">
+    <section aria-labelledby="diferenciais-titulo" className="py-14 md:py-20">
       <SectionHeading id="diferenciais-titulo" titulo={diferenciais.titulo} />
       <div className="mt-8 overflow-hidden rounded-xl border border-line bg-surface">
         <div className="flex items-center justify-between border-b border-line bg-sunken/60 px-4 py-2.5 text-xs font-medium text-muted">

@@ -6,10 +6,16 @@ import { VideoCard } from "./VideoCard";
 
 /** Hero dividido: texto + ação única (formato bio) de um lado, player de vídeo do outro. */
 export function Hero() {
+  // A largura do player acompanha o formato do vídeo: horizontal é largo, reels (9:16) é estreito.
+  const formato = hero.videoFormato;
+  const horizontal = formato === "horizontal";
+  const larguraPlayer = { horizontal: "max-w-[640px] lg:max-w-none", vertical: "max-w-[420px] lg:max-w-none", reels: "max-w-[320px] lg:max-w-[360px]" }[formato];
   return (
     <section
       aria-labelledby="hero-titulo"
-      className="grid gap-10 pb-16 pt-10 md:pt-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-16 lg:pb-24"
+      className={`grid gap-10 pb-16 pt-10 md:pt-14 lg:items-center lg:pb-24 ${
+        horizontal ? "lg:grid-cols-2 lg:gap-12" : "lg:grid-cols-[1.08fr_0.92fr] lg:gap-16"
+      }`}
     >
       <div className="surgir">
         <h1
@@ -36,8 +42,15 @@ export function Hero() {
         </ul>
       </div>
 
-      <div className="surgir mx-auto w-full max-w-[420px] [animation-delay:120ms] lg:max-w-none">
-        <VideoCard src={hero.videoSrc} poster={hero.posterSrc} titulo={videoHero.titulo} legenda={videoHero.legenda} />
+      <div className={`surgir mx-auto w-full [animation-delay:120ms] ${larguraPlayer}`}>
+        <VideoCard
+          src={hero.videoSrc}
+          poster={hero.posterSrc}
+          titulo={videoHero.titulo}
+          legenda={videoHero.legenda}
+          formato={formato}
+          temSom={hero.videoTemSom}
+        />
       </div>
     </section>
   );

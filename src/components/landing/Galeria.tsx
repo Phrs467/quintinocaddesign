@@ -8,7 +8,7 @@ import type { CasoPortfolio } from "@/content/portfolio";
 import { Texto } from "../Texto";
 import { SectionHeading } from "./SectionHeading";
 
-/** Portfólio em grade; cada caso abre em tela cheia (<dialog>) com navegação. */
+/** Portfólio (faixa escura) em grade; cada caso abre em tela cheia (<dialog>) com navegação. */
 export function Galeria({ casos }: { casos: CasoPortfolio[] }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [aberto, setAberto] = useState<number | null>(null);
@@ -27,8 +27,8 @@ export function Galeria({ casos }: { casos: CasoPortfolio[] }) {
     "flex size-11 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:bg-white/10";
 
   return (
-    <section id="portfolio" aria-labelledby="portfolio-titulo" className="scroll-mt-6 border-t border-line py-14 md:py-20">
-      <SectionHeading id="portfolio-titulo" titulo={portfolioSecao.titulo} texto={portfolioSecao.subtitulo} />
+    <section id="portfolio" aria-labelledby="portfolio-titulo" className="scroll-mt-6 py-14 md:py-20">
+      <SectionHeading id="portfolio-titulo" titulo={portfolioSecao.titulo} texto={portfolioSecao.subtitulo} claro />
 
       <ul className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0">
         {casos.map((c, i) => (
@@ -39,7 +39,7 @@ export function Galeria({ casos }: { casos: CasoPortfolio[] }) {
               className="group block w-full text-left"
               aria-label={`Ampliar: ${c.titulo} — ${c.tipoPeca}`}
             >
-              <span className="relative block aspect-[4/5] overflow-hidden rounded-xl bg-[#0b0c10]">
+              <span className="relative block aspect-[4/5] overflow-hidden rounded-xl bg-[#0b0c10] ring-1 ring-white/10">
                 <Image
                   src={c.imagemDepois}
                   alt=""
@@ -51,10 +51,10 @@ export function Galeria({ casos }: { casos: CasoPortfolio[] }) {
                   <Maximize2 aria-hidden className="size-4" strokeWidth={1.75} />
                 </span>
               </span>
-              <span className="mt-3 block text-[0.9375rem] font-medium text-navy">
+              <span className="mt-3 block text-[0.9375rem] font-medium text-white">
                 <Texto>{c.titulo}</Texto>
               </span>
-              <span className="block text-sm text-muted">
+              <span className="block text-sm text-white/60">
                 <Texto>{c.tipoPeca}</Texto>
               </span>
             </button>

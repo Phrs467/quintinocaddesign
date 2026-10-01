@@ -7,8 +7,8 @@ import { SectionHeading } from "./SectionHeading";
 const ESTAGIOS: CrownStage[] = ["envio", "desenho", "aprovacao", "producao"];
 
 /**
- * "Como funciona": quatro janelas de visor (tom do ExoCad), uma por passo, com a
- * ilustração em traço branco — ou um vídeo curto, se `videoSrc` estiver preenchido.
+ * "Como funciona" (faixa escura): quatro janelas de visor, uma por passo, com a ilustração
+ * em traço branco — ou um vídeo curto, se `videoSrc` estiver preenchido.
  */
 export function Processo() {
   const passos = comoFunciona.passos;
@@ -18,13 +18,14 @@ export function Processo() {
         id="processo-titulo"
         titulo={comoFunciona.titulo}
         texto="Do envio do caso ao arquivo pronto para a sua máquina, em quatro passos."
+        claro
       />
 
       <ol className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
         {passos.map((passo, i) => (
-          <li key={passo.titulo} className="overflow-hidden rounded-xl border border-line bg-surface">
+          <li key={passo.titulo} className="overflow-hidden rounded-xl border border-white/10 bg-viewport-raised">
             {/* visor */}
-            <div className="sobre-escuro grid-cad-dark relative flex aspect-[4/3] items-center justify-center bg-viewport">
+            <div className="grid-cad-dark relative flex aspect-[4/3] items-center justify-center border-b border-white/10 bg-[#0f0f15]">
               {passo.videoSrc ? (
                 <LoopVideo src={passo.videoSrc} label={passo.titulo} className="absolute inset-0 size-full object-cover" />
               ) : (
@@ -38,8 +39,8 @@ export function Processo() {
               </span>
             </div>
             <div className="p-3.5 md:p-4">
-              <h3 className="font-serif text-lg font-medium leading-snug">{passo.titulo}</h3>
-              <p className="mt-1 text-[0.8125rem] leading-5 text-muted">
+              <h3 className="font-serif text-lg font-medium leading-snug text-white">{passo.titulo}</h3>
+              <p className="mt-1 text-[0.8125rem] leading-5 text-white/65">
                 <Texto>{passo.descricao}</Texto>
               </p>
             </div>
