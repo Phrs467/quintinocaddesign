@@ -30,7 +30,8 @@ npm run dev                  # http://localhost:3000
 - Textos da página, texto do botão, número e mensagem do WhatsApp: `src/content/landing.ts`
 - Casos do portfólio: `src/content/portfolio.ts` (imagens em `public/`)
 - Vídeo do hero: `public/hero/processo.mp4` + capa `processo.jpg`, apontados em `hero` (`src/content/landing.ts`), junto com `videoFormato` (`reels` 9:16, `vertical` 4:5 ou `horizontal` 16:9) e `videoTemSom`. Use MP4 H.264 leve (até ~3 MB); o original pesado não vai para o git.
-- Vídeos dos passos (opcional): `comoFunciona.passos[i].videoSrc`
+- Imagens dos passos: `public/passos/` (WebP, nomes de pacientes pixelados), apontadas em `comoFunciona.passos[i].imagem`. **Nunca publique imagem com nome, rosto ou dado de paciente sem anonimizar** — os originais ficam fora do git.
+- Vídeos dos passos (opcional, substituem a imagem): `comoFunciona.passos[i].videoSrc`
 - "Quem sou eu": texto em `sobre` (`src/content/landing.ts`), foto em `public/sobre/retrato.webp`
 - Depoimentos em áudio: `depoimentos.itens` em `src/content/landing.ts`; coloque os áudios em `public/` (prefira `.mp3` ou `.m4a`) e aponte `audioSrc` para eles. Lista vazia esconde a seção.
 - Logo: `public/brand/logo.png` (recortada de `public/logo_sem_fundo_escura.png`)

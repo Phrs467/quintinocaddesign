@@ -23,7 +23,7 @@ export const whatsapp = {
 export const hero = {
   titulo: "Designs de Prótese em ExoCad que Aceleram sua Produção",
   subtitulo:
-    "Reduz tempo de projeto em {{PENDENTE: X}}%, aumenta precisão e escalabilidade para seu laboratório ou consultório",
+    "Reduz tempo de projeto em 70%, aumenta precisão e escalabilidade para seu laboratório ou consultório",
   /** Vídeo em loop (mp4, H.264), sem som. Gerado a partir de "Video Project.mp4": mesmo enquadramento vertical, só comprimido. */
   videoSrc: "/hero/processo.mp4" as string | null,
   /** Imagem de capa: aparece enquanto o vídeo carrega e para quem pede redução de movimento. */
@@ -46,19 +46,44 @@ export const problemas = {
 export const solucao = {
   titulo: "A Solução:",
   itens: [
-    "Designs rápidos ({{PENDENTE: X}} horas)",
+    "Designs rápidos (24 a 48 horas)",
     "Precisão total (ExoCad profissional)",
     "Pronto para fabricação (impressora 3D ou fresadora)",
   ],
 };
 
-export const comoFunciona = {
+export interface Passo {
+  titulo: string;
+  descricao: string;
+  /** Imagem do passo (em public/passos/, com nomes de pacientes pixelados). Sem imagem, aparece o desenho técnico. */
+  imagem?: { src: string; alt: string; /** Parte da imagem que fica visível no recorte 4:5 (CSS object-position). */ foco?: string };
+  /** Vídeo curto em loop; tem prioridade sobre a imagem. */
+  videoSrc?: string | null;
+}
+
+export const comoFunciona: { titulo: string; passos: Passo[] } = {
   titulo: "Como funciona",
   passos: [
-    { titulo: "Você envia", descricao: "Os arquivos STL ou PLY, especificações técnicas e material", videoSrc: null as string | null },
-    { titulo: "Eu desenho", descricao: "Design preciso em ExoCad ({{PENDENTE: X}} dias úteis)", videoSrc: null as string | null },
-    { titulo: "Você aprova", descricao: "Revisões rápidas, iterações", videoSrc: null as string | null },
-    { titulo: "Pronto para produzir", descricao: "Arquivo finalizado para sua máquina", videoSrc: null as string | null },
+    {
+      titulo: "Você envia",
+      descricao: "Os arquivos STL ou PLY, especificações técnicas e material",
+      imagem: { src: "/passos/1-voce-envia.webp", alt: "Conversa no WhatsApp com os arquivos STL do caso e fotos do paciente", foco: "center top" },
+    },
+    {
+      titulo: "Eu desenho",
+      descricao: "Design preciso em ExoCad (até 2 dias úteis)",
+      imagem: { src: "/passos/2-eu-desenho.webp", alt: "Design de prótese em andamento no ExoCad, na tela do computador", foco: "center 42%" },
+    },
+    {
+      titulo: "Você aprova",
+      descricao: "Revisões rápidas, iterações",
+      imagem: { src: "/passos/3-voce-aprova.webp", alt: "Conversa no WhatsApp com projetos enviados e aprovados com “Ok”", foco: "center 30%" },
+    },
+    {
+      titulo: "Pronto para produzir",
+      descricao: "Arquivo finalizado para sua máquina",
+      imagem: { src: "/passos/4-pronto.webp", alt: "Prótese total finalizada no ExoCad, pronta para produção", foco: "center" },
+    },
   ],
 };
 
@@ -103,8 +128,8 @@ export const sobre = {
 
 export interface Depoimento {
   nome: string;
-  /** Clínica, laboratório ou cargo. */
-  papel: string;
+  /** Clínica, laboratório ou cargo (opcional). */
+  papel?: string;
   /** Arquivo de áudio em public/ (prefira .mp3 ou .m4a; .ogg do WhatsApp não toca em todo iPhone). null = pendente. */
   audioSrc: string | null;
   /** Transcrição opcional do áudio (aparece em "Ler transcrição"). */
@@ -116,8 +141,7 @@ export const depoimentos = {
   titulo: "Depoimentos",
   subtitulo: "Ouça quem já trabalha com a Quintino.",
   itens: [
-    { nome: "{{PENDENTE: nome}}", papel: "{{PENDENTE: clínica ou laboratório}}", audioSrc: null },
-    { nome: "{{PENDENTE: nome}}", papel: "{{PENDENTE: clínica ou laboratório}}", audioSrc: null },
-    { nome: "{{PENDENTE: nome}}", papel: "{{PENDENTE: clínica ou laboratório}}", audioSrc: null },
+    { nome: "Dr. Matheus Lima", audioSrc: "/depoimentos/dr-matheus-lima.mp3" },
+    { nome: "Dr. Ricardo", audioSrc: "/depoimentos/dr-ricardo.mp3" },
   ] as Depoimento[],
 };

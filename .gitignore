@@ -42,3 +42,9 @@ next-env.d.ts
 
 # original pesado do vídeo do hero (a versão publicada é public/hero/processo.mp4)
 /public/Video Project.mp4
+
+# originais das imagens dos passos: têm nomes de pacientes legíveis (as versões publicadas, com os nomes pixelados, estão em public/passos/)
+/public/voceenvia.jpeg
+/public/eudesenho.jpeg
+/public/voceaprova.jpeg
+/public/pronto.jpeg

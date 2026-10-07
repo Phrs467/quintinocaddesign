@@ -27,7 +27,7 @@ export function AudioDepoimento({
 }: {
   src: string | null;
   nome: string;
-  papel: string;
+  papel?: string;
   transcricao?: string;
 }) {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -129,9 +129,11 @@ export function AudioDepoimento({
         <span className="block text-[0.9375rem] font-semibold text-navy">
           <Texto>{nome}</Texto>
         </span>
-        <span className="block text-sm text-muted">
-          <Texto>{papel}</Texto>
-        </span>
+        {papel && (
+          <span className="block text-sm text-muted">
+            <Texto>{papel}</Texto>
+          </span>
+        )}
       </figcaption>
 
       {transcricao && (
